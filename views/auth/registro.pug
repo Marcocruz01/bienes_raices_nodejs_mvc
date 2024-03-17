@@ -1,0 +1,33 @@
+extends ../layout/index
+
+block contenido 
+    div.py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Bienes     
+            span.font-normal.text-gray-400 Raices
+        h2.text-center.text-4xl.font-bold= pagina
+        div.mt-8.mx-auto.max-w-md
+            div.bg-white.py-8.px-4.shadow-md.rounded-md
+                form.space-y-5(method="POST" action="/auth/registro" novalidate)
+                    input(type="hidden" name="_csrf" value= csrfToken)
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="nombre") Nombre
+                        input#nombre.w-full.px-3.py-2.border.rounded-md.border-gray-300.placeholder-gray-400(placeholder="Escribe tu nombre aqui..." type="text" name="nombre" value=usuario ? usuario.nombre : '')
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="correo") Correo Eléctronico
+                        input#correo.w-full.px-3.py-2.border.rounded-md.border-gray-300.placeholder-gray-400(placeholder="Escribe tu correo eléctronico aqui..." type="email" name="correo" value=usuario ? usuario.correo : '')
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="password") Contraseña
+                        input#password.w-full.px-3.py-2.border.rounded-md.border-gray-300.placeholder-gray-400(placeholder="Escribe tu contraseña aqui..." type="password" name="password")
+                    div 
+                        label.block.text-sm.uppercase.text-gray-500.mb-2.font-bold(for="repetir_password") Repite tu Contraseña
+                        input#repetir_password.w-full.px-3.py-2.border.rounded-md.border-gray-300.placeholder-gray-400(placeholder="Repite tu contraseña aqui..." type="password" name="repetir_password")
+                    div.flex.items-center.justify-between
+                        a.text-gray-400.text-xs(href="/auth/login" class="") ¿Ya tienes cuenta? 
+                            span.text-black.font-bold Inicia Sesión
+                        a.text-gray-400.text-xs(href="/auth/olvide-password" class="") ¿Olvide mi contraseña? 
+                            span.text-black.font-bold Restablecer
+                    if errores 
+                        div(class="max-w-md mx-auto my-10")
+                            each error in errores 
+                                p.bg-red-600.text-white.font-bold.uppercase.text-xs.text-center.p-2.mb-1= error.msg
+                    input(type="submit" value="crear cuenta" class="cursor-pointer w-full hover:bg-black hover:transition-all border border-black py-2 px-5 rounded-md text-black hover:text-white font-bold uppercase")

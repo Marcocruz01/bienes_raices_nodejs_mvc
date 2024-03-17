@@ -1,0 +1,10 @@
+header(class="bg-blue-700 md:py-0 md:px-0 p-5")
+    .container.mx-auto.flex.justify-between.items-center
+        a(href="/mis-propiedades").md-text-2xl.text-white.font-bold.text-center.text-3xl Bienes     
+            span.font-normal Raices
+        nav(class="my-5 text-sm md:flex md:items-center md:gap-3 font-bold text-white hidden")
+            a(href="/mis-propiedades" class="hover:text-gray-200 hover:transition-all") Mis propiedades 
+            a(href="" class="hover:text-gray-200 hover:transition-all") Mi Perfil 
+            form(action="/auth/cerrar-sesion" method="POST")
+                input(type="hidden" name="_csrf" value= csrfToken)
+                input(type="submit" class="bg-white hover:bg-gray-200 hover:transition-all text-black px-5 py-2 rounded" value="Cerrar Sesión")

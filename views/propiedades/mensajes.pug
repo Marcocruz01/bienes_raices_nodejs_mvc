@@ -1,0 +1,21 @@
+extends ../layout/admin
+
+block contenido 
+    h2(class="text-center font-extrabold text-3xl") Mensajes Recibidos
+    a(href="/mis-propiedades" class="rounded py-2 bg-blue-600 hover:bg-blue-700 font-bold text-white uppercase text-sm px-10 hover:transition-all my-5 inline-block w-full sm:w-auto text-center") Volver 
+    //- pre= JSON.stringify(mensajes, undefined, 2)
+    div(class="mx-auto max-w-6xl bg-white shadow")
+        if mensajes.length 
+            ul 
+                each mensaje in mensajes 
+                    li(class="border-gray-200 border-b p-5")
+                        p(class="font-bold text-gray-700") Nombre: 
+                            span(class="font-normal")= mensaje.usuario.nombre
+                        p(class="font-bold text-gray-700") Correo Eléctronico: 
+                            span(class="font-normal")= mensaje.usuario.correo
+                        p(class="font-bold text-gray-700") Mensaje: 
+                            span(class="font-normal")= mensaje.mensaje
+                        p(class="font-bold text-gray-700") Enviado el:  
+                            span(class="font-normal")= formatearFecha(mensaje.createdAt)
+        else 
+            p(class="text-center font-bold bg-red-200 text-red-700 p-2 rounded") No tienes mensajes aún
